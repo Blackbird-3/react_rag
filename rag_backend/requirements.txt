@@ -1,0 +1,8 @@
+Flask
+groq
+flask-cors
+langchain
+gunicorn
+langchain-pinecone
+langchain-openai
+langchain-groq
