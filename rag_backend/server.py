@@ -36,8 +36,11 @@ def answer():
         res = "I am Empty"
         try:
             res = qa.invoke(query).get("result")
-        except Exception as error:
-            res = "error occured at chk1"+error
+        except:
+            try:
+                res = qa.run(query)
+            except:
+                res = "error occured at chk1"
         return jsonify({"answer": res})
     except:
         return jsonify({"query":query,"answer": "error occured at chk2"})
