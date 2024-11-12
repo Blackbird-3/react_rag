@@ -26,8 +26,11 @@ def answer():
         model_name="llama-3.1-8b-instant",
         temperature=0.5
     )
+    try:
+        knowledge = PineconeVectorStore.from_existing_index(index_name=index_name, embedding=OllamaEmbeddings(model="llama3.1"))
+    except:
+        print("[PINECONE] fault at ret")
     return jsonify({"answer": "you got result"})
-    # knowledge = PineconeVectorStore.from_existing_index(index_name=index_name, embedding=OllamaEmbeddings(model="llama3.1"))
     # qa= RetrievalQA.from_chain_type(
     #     llm=llm,
     #     chain_type="stuff",
