@@ -26,16 +26,18 @@ def answer():
         model_name="llama-3.1-8b-instant",
         temperature=0.5
     )
-    try:
-        knowledge = PineconeVectorStore.from_existing_index(index_name=index_name, embedding=OllamaEmbeddings(model="llama3.1"))
-    except:
-        print("[PINECONE] fault at ret")
+    knowledge = PineconeVectorStore.from_existing_index(index_name=index_name, embedding=OllamaEmbeddings(model="llama3.1"))
     qa= RetrievalQA.from_chain_type(
         llm=llm,
         chain_type="stuff",
         retriever=knowledge.as_retriever()
     )
-    return jsonify({"answer": "you got result"})
+    res = "I am Empty"
+    try:
+        res = qa.invoke(query).get("result")
+    except Exception as error:
+        res = "error in getting data : "+error
+    return jsonify({"answer": res})
     # return jsonify({"answer": qa.invoke(query).get("result")})
 
 if __name__ == "__main__":
