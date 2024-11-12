@@ -40,7 +40,7 @@ def answer():
             res = "error occured at chk1"+error
         return jsonify({"answer": res})
     except:
-        return jsonify({"answer": "error occured at chk2"})
+        return jsonify({"query":query,"answer": "error occured at chk2"})
     # return jsonify({"answer": qa.invoke(query).get("result")})
 
 if __name__ == "__main__":
