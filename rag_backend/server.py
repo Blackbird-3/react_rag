@@ -45,11 +45,12 @@ def answer():
             print("e2 : {}".format(e))
             res = res+" -- error occured at chk2"
         return jsonify({"query":query,"answer": res})
-    except:
+    except Exception as e:
+        print("e2 : {}".format(e))
         return jsonify({"query":query,"answer": "error occured at chk3"})
     # return jsonify({"answer": qa.invoke(query).get("result")})
 
 if __name__ == "__main__":
     # app.run(debug=True , port = 10000)   
-    port = int(os.environ.get("PORT", 11434 )) 
+    port = int(os.environ.get("PORT", 3000 )) 
     app.run(debug=True,host='0.0.0.0', port=port)
