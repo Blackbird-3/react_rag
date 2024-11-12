@@ -37,7 +37,7 @@ def answer():
         try:
             res = qa.invoke(query).get("result")
         except Exception as error:
-            res = "error occured at chk1"
+            res = "error occured at chk1"+error
         return jsonify({"answer": res})
     except:
         return jsonify({"answer": "error occured at chk2"})
