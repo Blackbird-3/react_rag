@@ -36,10 +36,12 @@ def answer():
         res = "I am Empty"
         try:
             res = qa.invoke(query).get("result")
-        except:
+        except Exception as e:
+            print("e1 : {}".format(e))
             try:
                 res = qa.run(query)
-            except:
+            except Exception as e:
+                print("e2 : {}".format(e))
                 res = "error occured at chk1"
         return jsonify({"answer": res})
     except:
