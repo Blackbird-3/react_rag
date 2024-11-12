@@ -21,18 +21,19 @@ def answer():
     index_name = "rag-fullstack"
     query = data.get('query')
     print(query)
-    llm=ChatGroq(
-        groq_api_key=os.environ["GROQ_API_KEY"],
-        model_name="llama-3.1-8b-instant",
-        temperature=0.5
-    )
-    knowledge = PineconeVectorStore.from_existing_index(index_name=index_name, embedding=OllamaEmbeddings(model="llama3.1"))
-    qa= RetrievalQA.from_chain_type(
-        llm=llm,
-        chain_type="stuff",
-        retriever=knowledge.as_retriever()
-    )
-    return jsonify({"answer": qa.invoke(query).get("result")})
+    return jsonify({"answer": "you got result"})
+    # llm=ChatGroq(
+    #     groq_api_key=os.environ["GROQ_API_KEY"],
+    #     model_name="llama-3.1-8b-instant",
+    #     temperature=0.5
+    # )
+    # knowledge = PineconeVectorStore.from_existing_index(index_name=index_name, embedding=OllamaEmbeddings(model="llama3.1"))
+    # qa= RetrievalQA.from_chain_type(
+    #     llm=llm,
+    #     chain_type="stuff",
+    #     retriever=knowledge.as_retriever()
+    # )
+    # return jsonify({"answer": qa.invoke(query).get("result")})
 
 if __name__ == "__main__":
     # app.run(debug=True , port = 10000)   
