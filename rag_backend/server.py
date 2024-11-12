@@ -33,19 +33,20 @@ def answer():
             chain_type="stuff",
             retriever=knowledge.as_retriever()
         )
-        res = "I am Empty"
+        res = ""
         try:
             res = qa.invoke(query).get("result")
         except Exception as e:
             print("e1 : {}".format(e))
-            try:
-                res = qa.run(query)
-            except Exception as e:
-                print("e2 : {}".format(e))
-                res = "error occured at chk1"
+            res = res+"error occured at chk1"
+        try:
+            res = qa.run(query)
+        except Exception as e:
+            print("e2 : {}".format(e))
+            res = res+" -- error occured at chk2"
         return jsonify({"answer": res})
     except:
-        return jsonify({"query":query,"answer": "error occured at chk2"})
+        return jsonify({"query":query,"answer": "error occured at chk3"})
     # return jsonify({"answer": qa.invoke(query).get("result")})
 
 if __name__ == "__main__":
