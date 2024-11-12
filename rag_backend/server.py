@@ -30,12 +30,12 @@ def answer():
         knowledge = PineconeVectorStore.from_existing_index(index_name=index_name, embedding=OllamaEmbeddings(model="llama3.1"))
     except:
         print("[PINECONE] fault at ret")
+    qa= RetrievalQA.from_chain_type(
+        llm=llm,
+        chain_type="stuff",
+        retriever=knowledge.as_retriever()
+    )
     return jsonify({"answer": "you got result"})
-    # qa= RetrievalQA.from_chain_type(
-    #     llm=llm,
-    #     chain_type="stuff",
-    #     retriever=knowledge.as_retriever()
-    # )
     # return jsonify({"answer": qa.invoke(query).get("result")})
 
 if __name__ == "__main__":
