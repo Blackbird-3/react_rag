@@ -6,3 +6,4 @@ gunicorn
 langchain-pinecone
 langchain-groq
 langchain-community
+sentence-transformers
