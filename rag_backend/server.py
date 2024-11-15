@@ -19,7 +19,7 @@ def answer():
     os.environ["GROQ_API_KEY"]= "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"
     data= request.json
     index_name = "rag-huggingface"
-    embeddings = HuggingFaceEmbeddings(model_name="all-MiniLM-L6-v2")
+    embeddings = HuggingFaceEmbeddings(model_name="sentence-transformers/all-MiniLM-L6-v2")
     query = data.get('query')
     print(query)
     llm=ChatGroq(
